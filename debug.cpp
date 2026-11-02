@@ -1,3 +1,4 @@
+#include <config.h>
 #include <debug.h>
 
 #include <WiFi.h>
@@ -18,5 +19,15 @@ void debug_loop() {
 //    DEBUG_PORT.printf("Stored SSID: %s\n", WiFi.SSID().c_str());
 //    DEBUG_PORT.printf("WiFi mode: %d\n", WiFi.getMode());
 //    DEBUG_PORT.printf("Connected: %s\n", WiFi.isConnected() ? "Yes" : "No");
+
+    struct tm *timeInfo = controller_getTime();
+
+    DEBUG_PORT.printf("%d-%d-%d %d:%d:%d\n",
+      timeInfo->tm_year + 1900,
+      timeInfo->tm_mon,
+      timeInfo->tm_mday,
+      timeInfo->tm_hour,
+      timeInfo->tm_min,
+      timeInfo->tm_sec);
   }
 }

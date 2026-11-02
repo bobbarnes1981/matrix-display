@@ -32,18 +32,14 @@
 #define WF4_PORT_X1_X2_EN  45
 #define WF4_PORT_X3_X4_EN  14
 
-extern uint8_t rgbPins[];
-
-extern uint8_t addrPins[];
-
-extern Adafruit_Protomatter matrix;
+extern Adafruit_Protomatter matrixWF4;
 
 extern void controllerWF4_setup();
 
 extern void controllerWF4_syncTime();
 
-extern void controllerWF4_setTime();
+extern void controllerWF4_setTime(struct tm timeInfo);
 
-extern void controllerWF4_getTime();
+extern struct tm* controllerWF4_getTime();
 
 #endif
