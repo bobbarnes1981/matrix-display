@@ -83,3 +83,7 @@ struct tm* controllerWF4_getTime() {
   // convert to tm struct
   return gmtime(&t);
 }
+
+bool controllerWF4_hasTime() {
+  return lastMillisWF4 != 0;
+}

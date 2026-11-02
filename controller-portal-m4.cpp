@@ -57,3 +57,7 @@ struct tm* controllerM4_getTime() {
   // convert to tm struct
   return gmtime(&t);
 }
+
+bool controllerM4_hasTime() {
+  return lastMillisM4 != 0;
+}

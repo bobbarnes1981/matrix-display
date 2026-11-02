@@ -24,4 +24,6 @@ extern void controllerM4_setTime(struct tm timeInfo);
 
 extern tm* controllerM4_getTime();
 
+extern bool controllerM4_hasTime();
+
 #endif

@@ -42,4 +42,6 @@ extern void controllerWF4_setTime(struct tm timeInfo);
 
 extern struct tm* controllerWF4_getTime();
 
+extern bool controllerWF4_hasTime();
+
 #endif
