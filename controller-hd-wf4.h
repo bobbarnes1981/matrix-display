@@ -38,10 +38,12 @@ extern uint8_t addrPins[];
 
 extern Adafruit_Protomatter matrix;
 
-extern void controller_setup();
+extern void controllerWF4_setup();
 
-extern void controller_setTime();
+extern void controllerWF4_syncTime();
 
-extern void controller_getTime();
+extern void controllerWF4_setTime();
+
+extern void controllerWF4_getTime();
 
 #endif

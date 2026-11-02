@@ -15,8 +15,8 @@ void debug_loop() {
     elapsed = m;
     DEBUG_PORT.println("tick...");
 
-    DEBUG_PORT.printf("Stored SSID: %s\n", WiFi.SSID().c_str());
-    DEBUG_PORT.printf("WiFi mode: %d\n", WiFi.getMode());
-    DEBUG_PORT.printf("Connected: %s\n", WiFi.isConnected() ? "Yes" : "No");
+//    DEBUG_PORT.printf("Stored SSID: %s\n", WiFi.SSID().c_str());
+//    DEBUG_PORT.printf("WiFi mode: %d\n", WiFi.getMode());
+//    DEBUG_PORT.printf("Connected: %s\n", WiFi.isConnected() ? "Yes" : "No");
   }
 }

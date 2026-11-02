@@ -1,7 +1,12 @@
 #include <controller-hd-wf4.h>
+#include <debug.h>
 
 #include <Arduino.h>
 #include <Adafruit_Protomatter.h>
+
+const char *ntpServer = "pool.ntp.org";
+const long gmtOffset = 0;
+const int daylightOffset = 3600;
 
 extern uint8_t rgbPins[] = {
   WF4_X1_R1_PIN, WF4_X1_G1_PIN, WF4_X1_B1_PIN,
@@ -25,7 +30,7 @@ extern Adafruit_Protomatter matrix(
   true                  // Enable double-buffering for smooth animation
 );
 
-void controller_setup() {
+void controllerWF4_setup() {
   // CRITICAL STEP FOR HD-WF4: Set the hardware port output enable line high
   pinMode(WF4_PORT_X1_X2_EN, OUTPUT);
   digitalWrite(WF4_PORT_X1_X2_EN, HIGH);
@@ -41,10 +46,25 @@ void controller_setup() {
   Serial.println("Matrix initialized successfully!");
 }
 
-void controller_setTime() {
+void controllerWF4_syncTime() {
+  configTime(gmtOffset, daylightOffset, ntpServer);
+  DEBUG_PORT.println("Configured time");
+
+  struct tm timeInfo;
+  if (!getLocalTime(&timeInfo, 5000)) {
+    DEBUG_PORT.println("Failed to get ntp time");
+  } else {
+    DEBUG_PORT.println("Synced ntp time");
+    DEBUG_PORT.printf("%d-%d-%d %d:%d:%d\n", timeInfo.tm_year + 1900, timeInfo.tm_mon, timeInfo.tm_mday, timeInfo.tm_hour, timeInfo.tm_min, timeInfo.tm_sec);
+
+    controllerWF4_setTime();
+  }
+}
+
+void controllerWF4_setTime() {
   // todo: store time in RTC
 }
 
-void controller_getTime() {
+void controllerWF4_getTime() {
   // todo: get time from RTC 
 }
