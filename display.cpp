@@ -28,11 +28,11 @@ void drawTime() {
   matrix.setCursor(2, 7);
   matrix.printf("%d-%02d-%02d",
       timeInfo->tm_year + 1900,
-      timeInfo->tm_mon,
+      timeInfo->tm_mon + 1,
       timeInfo->tm_mday);
 
   matrix.setTextColor(matrix.color565(255, 0, 0)); // Red text
-  matrix.setCursor(2, 18);
+  matrix.setCursor(8, 18);
   matrix.printf("%02d:%02d:%02d",
       timeInfo->tm_hour,
       timeInfo->tm_min,

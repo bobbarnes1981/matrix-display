@@ -59,7 +59,7 @@ void controllerWF4_syncTime() {
     DEBUG_PORT.println("Failed to get ntp time");
   } else {
     DEBUG_PORT.println("Synced ntp time");
-    DEBUG_PORT.printf("%d-%d-%d %d:%d:%d\n", timeInfo.tm_year + 1900, timeInfo.tm_mon, timeInfo.tm_mday, timeInfo.tm_hour, timeInfo.tm_min, timeInfo.tm_sec);
+    DEBUG_PORT.printf("%d-%d-%d %d:%d:%d\n", timeInfo.tm_year + 1900, timeInfo.tm_mon + 1, timeInfo.tm_mday, timeInfo.tm_hour, timeInfo.tm_min, timeInfo.tm_sec);
 
     controllerWF4_setTime(timeInfo);
   }
