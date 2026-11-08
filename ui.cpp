@@ -8,11 +8,11 @@ void brightnessCallback(Control *sender, int type) {
   DEBUG_PORT.print("Selected value ");
   DEBUG_PORT.println(sender->value);
   if (sender->value == "H") {
-    brightness = 255;
+    brightness = BRIGHT_H;
   } else if (sender->value == "M") {
-    brightness = 128;
+    brightness = BRIGHT_M;
   } else if (sender->value == "L") {
-    brightness = 80;
+    brightness = BRIGHT_L;
   }
 }
 

@@ -7,7 +7,7 @@
 
 int mode = 0;
 
-uint8_t brightness = 128;
+uint8_t brightness = BRIGHT_L;
 
 int angle = 0;
 unsigned long angleSpeed = 11;
@@ -99,7 +99,7 @@ void drawTime() {
 
   struct tm *timeInfo = controller_getTime();
 
-  matrix.setCursor(2, 9);
+  matrix.setCursor(2, 10);
   matrix.setFont();
   matrix.setTextColor(get_rgb565_color_wheel(getAngleOffset(90)));
   matrix.printf("%d-%02d-%02d",
@@ -107,7 +107,7 @@ void drawTime() {
       timeInfo->tm_mon + 1,
       timeInfo->tm_mday);
 
-  matrix.setCursor(8, 16);
+  matrix.setCursor(8, 15);
   matrix.setFont();
   matrix.setTextColor(get_rgb565_color_wheel(getAngleOffset(180)));
   matrix.printf("%02d:%02d:%02d",
