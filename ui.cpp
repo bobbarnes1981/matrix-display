@@ -32,7 +32,7 @@ void ui_setup() {
   ESPUI.addControl(ControlType::Option, "Normal", "M", ControlColor::Alizarin, brightnessDropdown);
   ESPUI.addControl(ControlType::Option, "Dim", "L", ControlColor::Alizarin, brightnessDropdown);
 
-  ESPUI.begin("ESPUI testing");
+  ESPUI.begin("Matrix Display");
 }
 
 void ui_loop() {

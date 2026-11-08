@@ -4,6 +4,8 @@
 
 Adafruit_Protomatter by Adafruit
 
+Adafruit GFX Library by Adafruit
+
 WiFiManager by tzapu
 
 ESPUI by Lukas Bachschwell

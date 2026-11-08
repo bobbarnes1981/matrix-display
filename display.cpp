@@ -1,6 +1,8 @@
 #include <display.h>
 
 #include <Adafruit_Protomatter.h>
+#include <Adafruit_GFX.h>
+#include <Fonts/TomThumb.h>
 #include <WiFi.h>
 
 int mode = 0;
@@ -73,8 +75,23 @@ void drawDefault() {
   matrix.drawCircle(matrix.width() / 2, matrix.height() / 2, 10, matrix.color565(0, 0, 255)); // Blue center circle
   
   matrix.setCursor(5, 12);
+  matrix.setFont();
   matrix.setTextColor(matrix.color565(0, 255, 0)); // Green text
   matrix.print("Matrix...");
+}
+
+void drawAPIP() {
+  matrix.setCursor(2, 24);
+  matrix.setFont(&TomThumb);
+  matrix.setTextColor(matrix.color565(255, 0, 0)); // Red text
+  matrix.print(WiFi.softAPIP());
+}
+
+void drawLocalIP() {
+  matrix.setCursor(2, 24);
+  matrix.setFont(&TomThumb);
+  matrix.setTextColor(get_rgb565_color_wheel(getAngleOffset(270)));
+  matrix.print(WiFi.localIP());
 }
 
 void drawTime() {
@@ -82,19 +99,23 @@ void drawTime() {
 
   struct tm *timeInfo = controller_getTime();
 
+  matrix.setCursor(2, 9);
+  matrix.setFont();
   matrix.setTextColor(get_rgb565_color_wheel(getAngleOffset(90)));
-  matrix.setCursor(2, 7);
   matrix.printf("%d-%02d-%02d",
       timeInfo->tm_year + 1900,
       timeInfo->tm_mon + 1,
       timeInfo->tm_mday);
 
+  matrix.setCursor(8, 16);
+  matrix.setFont();
   matrix.setTextColor(get_rgb565_color_wheel(getAngleOffset(180)));
-  matrix.setCursor(8, 18);
   matrix.printf("%02d:%02d:%02d",
       timeInfo->tm_hour,
       timeInfo->tm_min,
       timeInfo->tm_sec);
+
+  drawLocalIP();
 }
 
 void drawCountdown() {
@@ -110,8 +131,12 @@ void display_loop() {
 
   if (WiFi.status() != WL_CONNECTED) {
     matrix.setCursor(5, 12);
+    matrix.setFont();
     matrix.setTextColor(matrix.color565(0, 255, 0)); // Green text
     matrix.print("WiFi");
+
+    drawAPIP();
+
     matrix.show();
   } else {
     // Clear the screen buffer
