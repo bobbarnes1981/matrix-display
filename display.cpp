@@ -5,6 +5,8 @@
 
 int mode = 0;
 
+uint8_t brightness = 128;
+
 int angle = 0;
 unsigned long angleSpeed = 11;
 unsigned long lastElapsed = 0;
@@ -32,6 +34,10 @@ uint16_t get_rgb565_color_wheel(int angle) {
         case 4: r = v;       g = 0;       b = 255;     break; // Blue to Magenta
         case 5: r = 255;     g = 0;       b = 255 - v; break; // Magenta to Red
     }
+
+    r = ((uint16_t)r * brightness) >> 8;
+    g = ((uint16_t)g * brightness) >> 8;
+    b = ((uint16_t)b * brightness) >> 8;
 
     // Convert 8-bit R, G, B to RGB565 bit-packed format
     // Red:   5 bits (shift right by 3, shift left to bits 11-15)

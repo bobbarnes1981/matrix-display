@@ -2,6 +2,7 @@
 #include <debug.h>
 #include <display.h>
 #include <network.h>
+#include <ui.h>
 #include <WiFi.h>
 
 int wifiStatus = WL_DISCONNECTED;
@@ -10,6 +11,7 @@ void setup() {
   debug_setup();
   display_setup();
   network_setup();
+  ui_setup();
 }
 
 void loop() {
@@ -27,4 +29,5 @@ void loop() {
   debug_loop();
   display_loop();
   network_loop();
+  ui_loop();
 }
