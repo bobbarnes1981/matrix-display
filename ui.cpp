@@ -13,6 +13,8 @@ void brightnessCallback(Control *sender, int type) {
     brightness = BRIGHT_M;
   } else if (sender->value == "L") {
     brightness = BRIGHT_L;
+  } else if (sender->value == "O") {
+    brightness = BRIGHT_OFF;
   }
 }
 
@@ -31,6 +33,7 @@ void ui_setup() {
   ESPUI.addControl(ControlType::Option, "Bright", "H", ControlColor::Alizarin, brightnessDropdown);
   ESPUI.addControl(ControlType::Option, "Normal", "M", ControlColor::Alizarin, brightnessDropdown);
   ESPUI.addControl(ControlType::Option, "Dim", "L", ControlColor::Alizarin, brightnessDropdown);
+  ESPUI.addControl(ControlType::Option, "Off", "O", ControlColor::Alizarin, brightnessDropdown);
 
   ESPUI.begin("Matrix Display");
 }

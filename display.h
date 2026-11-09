@@ -8,6 +8,7 @@
 #define BRIGHT_H 255
 #define BRIGHT_M 128
 #define BRIGHT_L 80
+#define BRIGHT_OFF 0
 
 extern uint8_t brightness;
 
