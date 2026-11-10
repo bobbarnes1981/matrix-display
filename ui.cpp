@@ -3,6 +3,9 @@
 #include <display.h>
 
 #include <ESPUI.h>
+#include <Preferences.h>
+
+Preferences preferences;
 
 void brightnessCallback(Control *sender, int type) {
   DEBUG_PORT.print("Selected value ");
@@ -17,16 +20,32 @@ void brightnessCallback(Control *sender, int type) {
   } else if (sender->value == "O") {
     brightness = BRIGHT_0;
   }
+
+  preferences.begin(APP_PREFERENCES, false); // false = read/write
+  preferences.putUInt("brightness", brightness);
+  preferences.end();
 }
 
 void startTimeCallback(Control *sender, int type) {
   DEBUG_PORT.print("Selected value ");
   DEBUG_PORT.println(sender->value);
+
+
+
+  //preferences.begin(APP_PREFERENCES, false); // false = read/write
+  //preferences.putUInt("startTime", startTime);
+  //preferences.end();
 }
 
 void endTimeCallback(Control *sender, int type) {
   DEBUG_PORT.print("Selected value ");
   DEBUG_PORT.println(sender->value);
+
+
+
+  //preferences.begin(APP_PREFERENCES, false); // false = read/write
+  //preferences.putUInt("endTime", startTime);
+  //preferences.end();
 }
 
 void ui_setup() {

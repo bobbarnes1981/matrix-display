@@ -69,6 +69,15 @@ int getAngleOffset(int offset) {
 
 void display_setup() {
   controller_setup();
+
+  preferences.begin(APP_PREFERENCES, true); // true = read only
+
+  brightness = preferences.getUInt("brightness", BRIGHT_80);
+//  startTime = preferences.getUInt("startTime", 06:00);
+//  endTime = preferences.getUInt("endTime", 22:00);
+
+  preferences.end();
+
 }
 
 void drawDefault() {
