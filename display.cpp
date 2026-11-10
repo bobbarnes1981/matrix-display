@@ -1,17 +1,17 @@
 #include <display.h>
+#include <storage.h>
 #include <ui.h>
 
 #include <Adafruit_Protomatter.h>
 #include <Adafruit_GFX.h>
 #include <Fonts/TomThumb.h>
-#include <Preferences.h>
 #include <WiFi.h>
 
 int mode = 0;
 
 uint8_t brightness = BRIGHT_80;
 // startTime = 06:00;
-// endTime = 20:00;
+// endTime = 22:00;
 
 int angle = 0;
 unsigned long angleSpeed = 11;
@@ -71,15 +71,9 @@ int getAngleOffset(int offset) {
 
 void display_setup() {
   controller_setup();
-
-  preferences.begin(APP_PREFERENCES, true); // true = read only
-
-  brightness = preferences.getUInt("brightness", BRIGHT_80);
-//  startTime = preferences.getUInt("startTime", 06:00);
-//  endTime = preferences.getUInt("endTime", 22:00);
-
-  preferences.end();
-
+  brightness = storage_getBrightness(BRIGHT_80);
+  //startTime = storage_getStartTime();
+  //endTime = storage_getEndTime();
 }
 
 void drawDefault() {

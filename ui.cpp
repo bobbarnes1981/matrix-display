@@ -1,11 +1,9 @@
 #include <ui.h>
 #include <debug.h>
 #include <display.h>
+#include <storage.h>
 
 #include <ESPUI.h>
-#include <Preferences.h>
-
-Preferences preferences;
 
 void brightnessCallback(Control *sender, int type) {
   DEBUG_PORT.print("Selected value ");
@@ -21,31 +19,19 @@ void brightnessCallback(Control *sender, int type) {
     brightness = BRIGHT_0;
   }
 
-  preferences.begin(APP_PREFERENCES, false); // false = read/write
-  preferences.putUInt("brightness", brightness);
-  preferences.end();
+  storage_setBrightness(brightness);
 }
 
 void startTimeCallback(Control *sender, int type) {
   DEBUG_PORT.print("Selected value ");
   DEBUG_PORT.println(sender->value);
-
-
-
-  //preferences.begin(APP_PREFERENCES, false); // false = read/write
-  //preferences.putUInt("startTime", startTime);
-  //preferences.end();
+  storage_setStartTime();
 }
 
 void endTimeCallback(Control *sender, int type) {
   DEBUG_PORT.print("Selected value ");
   DEBUG_PORT.println(sender->value);
-
-
-
-  //preferences.begin(APP_PREFERENCES, false); // false = read/write
-  //preferences.putUInt("endTime", startTime);
-  //preferences.end();
+  storage_setEndTime();
 }
 
 void ui_setup() {
@@ -66,22 +52,24 @@ void ui_setup() {
   ESPUI.addControl(ControlType::Option, "Off", "0", ControlColor::Alizarin, brightnessControl);
 
   uint16_t startTimeControl = ESPUI.addControl(
-    ControlType::Time,
+    ControlType::Text,
     "Start time",
     "06:00",
     ControlColor::Alizarin,
     mainTab,
     startTimeCallback
   );
-
+  ESPUI.setInputType(startTimeControl, "time");
+  
   uint16_t endTimeControl = ESPUI.addControl(
-    ControlType::Time,
+    ControlType::Text,
     "End time",
-    "20:00",
+    "22:00",
     ControlColor::Alizarin,
     mainTab,
     endTimeCallback
   );
+  ESPUI.setInputType(endTimeControl, "time");
 
   ESPUI.begin("Matrix Display");
 }
