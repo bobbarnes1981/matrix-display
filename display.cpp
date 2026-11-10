@@ -1,4 +1,5 @@
 #include <display.h>
+#include <ui.h>
 
 #include <Adafruit_Protomatter.h>
 #include <Adafruit_GFX.h>
