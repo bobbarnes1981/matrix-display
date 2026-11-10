@@ -8,6 +8,8 @@
 int mode = 0;
 
 uint8_t brightness = BRIGHT_80;
+// startTime = 06:00;
+// endTime = 20:00;
 
 int angle = 0;
 unsigned long angleSpeed = 11;
@@ -139,6 +141,12 @@ void display_loop() {
 
     matrix.show();
   } else {
+    /*
+     * TODO: check startTime and endTime
+     *       if within range show display
+     *       otherwise maybe only show every 30 seconds, or just show ip address?
+     */
+
     // Clear the screen buffer
     matrix.fillScreen(matrix.color565(0, 0, 0));
 
