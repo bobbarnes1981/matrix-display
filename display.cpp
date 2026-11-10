@@ -7,7 +7,7 @@
 
 int mode = 0;
 
-uint8_t brightness = BRIGHT_L;
+uint8_t brightness = BRIGHT_80;
 
 int angle = 0;
 unsigned long angleSpeed = 11;
