@@ -4,6 +4,7 @@
 #include <Adafruit_Protomatter.h>
 #include <Adafruit_GFX.h>
 #include <Fonts/TomThumb.h>
+#include <Preferences.h>
 #include <WiFi.h>
 
 int mode = 0;
