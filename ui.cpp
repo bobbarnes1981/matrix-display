@@ -15,7 +15,7 @@ void brightnessCallback(Control *sender, int type) {
     brightness = BRIGHT_128;
   } else if (sender->value == "80") {
     brightness = BRIGHT_80;
-  } else if (sender->value == "O") {
+  } else if (sender->value == "0") {
     brightness = BRIGHT_0;
   }
 
@@ -40,7 +40,7 @@ void ui_setup() {
   uint16_t brightnessControl = ESPUI.addControl(
     ControlType::Select,
     "Brightness",
-    "80",
+    "80", // TODO: this should be the value loaded from storage
     ControlColor::Alizarin,
     mainTab,
     brightnessCallback
